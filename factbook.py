@@ -19,18 +19,18 @@ from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 countries_df = pd.read_csv('factbook.csv', skipinitialspace=True, delimiter=";")
 countries_df = countries_df.drop(0)
 
-HIV_deceased = countries_df[['Country','HIV/AIDS - deaths' ]]
+hiv_deceased = countries_df[['Country','HIV/AIDS - deaths' ]]
 
-HIV_deceased_non_null = HIV_deceased.loc[~pd.isna(HIV_deceased['HIV/AIDS - deaths'])]
+hiv_deceased_non_null = hiv_deceased.loc[~pd.isna(hiv_deceased['HIV/AIDS - deaths'])]
 
 
 #convert 'HIV/AIDS - deaths' to int32
 
-HIV_deceased_non_null.astype({'HIV/AIDS - deaths':'int32'})
+hiv_deceased_non_null.astype({'HIV/AIDS - deaths':'int32'})
 
-hiv_deceased_20 = HIV_deceased_non_null.sort_values(by='HIV/AIDS - deaths', ascending=False).head(20)
+hiv_deceased_20 = hiv_deceased_non_null.sort_values(by='HIV/AIDS - deaths', ascending=False).head(20)
 
-HIV_count = hiv_deceased_20['HIV/AIDS - deaths'].value_counts().head(20)
+hiv_count = hiv_deceased_20['HIV/AIDS - deaths'].value_counts().head(20)
 
 
 
@@ -39,7 +39,7 @@ HIV_count = hiv_deceased_20['HIV/AIDS - deaths'].value_counts().head(20)
 x = hiv_deceased_20['Country']
 y = hiv_deceased_20['HIV/AIDS - deaths']
 
-HIV_count.plot(kind='bar')
+hiv_count.plot(kind='bar')
 
 plt.scatter(x,y)
 plt.xticks(rotation=90)
