@@ -77,6 +77,31 @@ account_balance_20[['Country','Current account balance']]
 account_balance.loc[account_balance['Country'].str.startswith('Unite')]
 countries_df.iloc[249]
 
-# USA account balance is 
+# Unemployment rate vs Military expenditures - percent of GDP(%)
+
+military_expenditure = countries_df.loc[~pd.isna(countries_df['Military expenditures - percent of GDP(%)'])]
+military_expenditure.astype({'Military expenditures - percent of GDP(%)':'float32'})
+
+military_expenditure_20 = military_expenditure.sort_values(
+        by = 'Military expenditures - percent of GDP(%)', ascending=False).head(20)
+
+unemploymnet_vs_military = military_expenditure_20[['Country', 'Military expenditures - percent of GDP(%)', 'Unemployment rate(%)']]
+
+
+military_expenditure.loc[military_expenditure['Country'].str.startswith('United St')]['Military expenditures - percent of GDP(%)']
+
+
+military_expenditure.set_index("Country", inplace=True)
+
+
+ind_vs_pak = military_expenditure.loc[['India', 'Pakistan'], ['GDP', 'Military expenditures - dollar figure',
+                         'Military expenditures - percent of GDP(%)',             
+                         'Unemployment rate(%)','Life expectancy at birth(years)',
+                         'GDP - real growth rate(%)', 'Area(sq km)',
+                         'Investment (gross fixed)(% of GDP)', 'Debt - external', 
+                         'Inflation rate (consumer prices)(%)',
+                         'Infant mortality rate(deaths/1000 live births)']]
+
+
 
 
